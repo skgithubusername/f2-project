@@ -1,13 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* fonts.css */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Bodoni Moda SC", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  /* background-color: rgb(197, 198, 199); */
+  /* background-color: rgb(31, 31, 150); */
+  
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
+
+
+
+
+  /* /support css*/
+  #support{
+    background-image: url('../src//img/Rectangle\ 59.png');
+     background-size:  cover;
+    background-position:  center;
+    
+   
+      
+  }
+
+  /* box */
+
+  @keyframes slideFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideFromRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideFromTop {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideFromBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-left {
+    animation: slideFromLeft 1s ease-in-out forwards;
+  }
+  
+  .animate-slide-right {
+    animation: slideFromRight 1s ease-in-out forwards;
+  }
+  
+  .animate-slide-top {
+    animation: slideFromTop 1s ease-in-out forwards;
+  }
+  
+  .animate-slide-bottom {
+    animation: slideFromBottom 1s ease-in-out forwards;
+  }
+  
+  .animate-visible .box {
+    opacity: 0;
+  }
+  
+  .animate-visible .box.animated {
+    opacity: 1;
+  }
+  
+
+
+
+
+
