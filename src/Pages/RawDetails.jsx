@@ -310,7 +310,7 @@ function RawDetails() {
       try {
         const response = await fetch("/api/rawDetails/allRawDetails");
         const data = await response.json();
-
+console.log(data)
         const foundDetail = data.find((item) => item.id === parseInt(id, 10));
         setDetail(foundDetail);
       } catch (error) {
@@ -331,7 +331,7 @@ function RawDetails() {
     return <div>Detail not found.</div>;
   }
 
- console.log("data" , detail)
+//  console.log("data" , detail)
 
 
   return (

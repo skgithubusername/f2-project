@@ -346,6 +346,23 @@ import axios from "axios";
 
 function RawMaterial() {
   const [rawMaterials, setRawMaterials] = useState([]);
+  const [title, setTitle] = useState([]);
+
+  const handleTitle = async () => {
+    let titleArray = [];
+    const responseRawDetails = await fetch("/api/rawDetails/allRawDetails");
+    const dataresponseRawDetails = await responseRawDetails.json();
+    console.log(dataresponseRawDetails);
+
+    dataresponseRawDetails.map((data) => {
+      // console.log("data.title" ,data.title)
+
+      titleArray.push(data.title);
+
+    });
+    setTitle(titleArray)
+    // console.log("titlearr", titleArray);
+  };
 
   // console.log("Hello newwwwwwwwwwwwww")
   useEffect(() => {
@@ -353,10 +370,13 @@ function RawMaterial() {
       try {
         console.log("Hello");
         const response = await axios.get("/api/rawMains/allRawMains");
+        // const responseRawDetails = await fetch("/api/rawDetails/allRawDetails");
+        //  const dataresponseRawDetails = await responseRawDetails.json();
         console.log(response.data);
+        // console.log(dataresponseRawDetails);
         // console.log(JSON.parse((response.data[4].button))[0].buttonName)
-        console.log(response.data[3].button.length)
-        console.log(response.data[4].button.length)
+        console.log(response.data[3].button.length);
+        console.log(response.data[4].button.length);
         setRawMaterials(response.data);
       } catch (error) {
         console.error("Error fetching raw materials:", error);
@@ -364,8 +384,11 @@ function RawMaterial() {
     };
 
     fetchRawMaterials();
-  }, []);
+    handleTitle();
+    console.log("title",title[1]);
+    console.log("titlearr", title);
 
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#0c4999] pb-16">
@@ -374,7 +397,7 @@ function RawMaterial() {
         Raw Material
       </h2>
 
-      {rawMaterials.map((rawMaterial) => (
+      {rawMaterials.map((rawMaterial,tindex) => (
         <div
           key={rawMaterial.id}
           className="container mx-auto lg:flex justify-between items-center mt-20"
@@ -407,10 +430,6 @@ function RawMaterial() {
             </div>
 
             <div className="flex flex-wrap text-white m-2 my-6">
-             
-
-
-
               {/* {
                 rawMaterial.button.length ?  (   JSON.parse(rawMaterial.button).map((btn,index) => {
                   <Link to={`/raw-details/${index}`}>
@@ -420,33 +439,18 @@ function RawMaterial() {
                   : ""
               } */}
 
-
-
-{
-  JSON.parse(rawMaterial.button.length ? rawMaterial.button : "[]").map((btn,index) => {
-  <Link to={`/raw-details/${index}`}>
-    <button>{btn.buttonName || "Default button."}</button>
-  </Link>  })
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              {JSON.parse(
+                rawMaterial.button.length ? rawMaterial.button : "[]"
+              ).map((btn, index) => {
+                return (
+                  <Link
+                    to={`/raw-details/${index + 1}?title=${title[tindex]}`}
+                  >
+                    {/* <button>{btn.buttonName || "Default button."}</button> */}
+                    <button>{`index ${tindex}` || "Default button."}</button>
+                  </Link>
+                );
+              })}
 
               {/* 
 <Link to={`/raw-details/${rawMaterial.id}`}>

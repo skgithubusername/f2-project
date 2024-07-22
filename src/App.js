@@ -99,6 +99,7 @@ function App() {
         <Route path="/raw" element={<RawMaterial />} />
         <Route path="/machinery-details/:id" element={<MachineryDetails />} />
         <Route path="/manufactured-details/:id" element={<ManufacturedDetails />} />
+        {/* <Route path=`/raw-details/:id?title=${"title"}` element={<RawDetails />} /> */}
         <Route path="/raw-details/:id" element={<RawDetails />} />
         <Route path="/raw-details" element={<RawDetails />} />
       </Routes>
